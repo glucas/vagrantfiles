@@ -1,0 +1,6 @@
+
+# auto-detect text files and perform LF normalization
+* text=auto
+
+# force unix-style for shell scripts
+*.sh text eol=lf
