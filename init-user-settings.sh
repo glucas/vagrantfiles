@@ -7,6 +7,6 @@ if ! grep -q "emacs --daemon" $HOME/.profile; then
 fi
 
 # add host's shared bin to PATH
-if ! grep -q "/host/shared/bin" $HOME/.bashrc; then
-    echo -e '\nexport PATH=$PATH:/host/shared/bin' >> $HOME/.bashrc
+if ! grep -q "/host/bin" $HOME/.bashrc; then
+    echo -e '\nexport PATH=$PATH:/host/bin' >> $HOME/.bashrc
 fi

@@ -19,6 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # share folders
   config.vm.synced_folder "/shared", "/host/shared"
   config.vm.synced_folder "/home/source/vagrantfiles/scripts", "/host/provision"
+  config.vm.synced_folder "/home/source/vagrantfiles/bin", "/host/bin"
   
   # provision
   config.vm.provision :shell, :path => "provision.sh"
