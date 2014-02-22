@@ -10,7 +10,13 @@ apt-get -y install emacs-snapshot-el emacs-snapshot-gtk emacs-snapshot
 
 apt-get -y install texinfo
 
-# generate a minimal .emacs:
+# configure vagrant user
+
+USER_PROFILE=/home/vagrant/.profile
+if ! grep -q "emacs" $USER_PROFILE; then
+    echo -e '\n# start emacs server at login' >> $USER_PROFILE
+    echo 'ps | grep -q emacs || emacs --daemon' >> $USER_PROFILE
+fi
 
 USER_DOTEMACS=/home/vagrant/.emacs
 cat <<EOF > $USER_DOTEMACS
@@ -27,4 +33,4 @@ cat <<EOF > $USER_DOTEMACS
 ;;; .emacs ends here
 EOF
 chown vagrant:vagrant $USER_DOTEMACS
-
+fi
