@@ -1,25 +1,12 @@
 #!/bin/bash
 
-# install git:
+apt-get -y install build-essential 
 
+# ack
+apt-get -y install ack-grep
+ln -s `which ack-grep` /usr/local/bin/ack
+
+# git and gh
 apt-get -y install git
+sudo dpkg -i /host/shared/installs/gh_2.0.0_amd64.deb 
 
-# also install hub:
-
-if [ ! -d /opt/hub ]; then
-    git clone https://github.com/github/hub.git /opt/hub
-    apt-get -y install rake
-    cd /opt/hub
-    rake install prefix=/usr/local
-    cd -
-fi
-
-# configure user
-
-if [ -n "$GIT_USERNAME" ]; then
-    su -c "git config --global user.name $GIT_USERNAME" vagrant
-fi
-
-if [ -n "$GIT_EMAIL" ]; then
-    su -c "git config --global user.email $GIT_EMAIL" vagrant
-fi
