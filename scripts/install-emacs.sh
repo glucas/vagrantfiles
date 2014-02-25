@@ -19,7 +19,8 @@ if ! grep -q "emacs" $USER_PROFILE; then
 fi
 
 USER_DOTEMACS=/home/vagrant/.emacs
-cat <<EOF > $USER_DOTEMACS
+if [ ! -f $USER_DOTEMACS; then
+    cat <<EOF > $USER_DOTEMACS
 ;;; .emacs
 ;; A minimal emacs config.
 (tool-bar-mode -1)
@@ -32,5 +33,5 @@ cat <<EOF > $USER_DOTEMACS
 (global-set-key (kbd "C-x C-j") 'dired-jump)
 ;;; .emacs ends here
 EOF
-chown vagrant:vagrant $USER_DOTEMACS
+    chown vagrant:vagrant $USER_DOTEMACS
 fi
