@@ -4,7 +4,9 @@ apt-get -y install build-essential
 
 # ack
 apt-get -y install ack-grep
-ln -s `which ack-grep` /usr/local/bin/ack
+if [ ! -f /usr/local/bin/ack ]; then
+    ln -s `which ack-grep` /usr/local/bin/ack
+fi
 
 # git and gh
 apt-get -y install git
