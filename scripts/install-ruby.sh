@@ -8,7 +8,7 @@ if [ ! -f /usr/local/bin/ruby ]; then
 
     if [ -f $PYCHARM_DIST ]; then
 	apt-get -y install build-essential zlib1g-dev libssl-dev libreadline6-dev libyaml-dev
-	echo "Installing ruby from: $RUBY_DIST"
+	echo "[vagrantfiles] Installing ruby from: $RUBY_DIST"
 	tar xfz $RUBY_DIST -C /tmp/
 	RUBY_HOME=$(find /tmp -maxdepth 1 -type d -name 'ruby*')
 	cd $RUBY_HOME

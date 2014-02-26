@@ -6,6 +6,7 @@ apt-get -y install build-essential
 apt-get -y install ack-grep
 if [ ! -f /usr/local/bin/ack ]; then
     ln -s `which ack-grep` /usr/local/bin/ack
+    echo "[vagrantfiles] Linked: /usr/local/bin/ack"
 fi
 
 # git and gh

@@ -9,7 +9,7 @@ if [ ! -d /opt/pycharm ]; then
     fi
 
     if [ -f $PYCHARM_DIST ]; then
-	echo "Installing pycharm from: $PYCHARM_DIST"
+	echo "[vagrantfiles] Installing pycharm from: $PYCHARM_DIST"
 	tar xfz $PYCHARM_DIST -C /opt/
 	PYCHARM_HOME=$(find /opt -maxdepth 1 -type d -name 'pycharm*')
 	chown -R root: $PYCHARM_HOME
@@ -30,5 +30,6 @@ nohup pycharm &> $OUTFILE &
 EOF
     chmod a+x $LAUNCH_PYCHARM
     chown -R vagrant:vagrant `dirname $LAUNCH_PYCHARM`
+    echo "[vagrantfiles] Generated file: $LAUNCH_PYCHARM"
 fi
 

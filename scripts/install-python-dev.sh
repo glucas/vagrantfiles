@@ -21,4 +21,5 @@ if ! grep -q "virtualenvwrapper" $USER_BASHRC; then
     echo -e "\n# enable python virtualenvwrapper" >> $USER_BASHRC
     echo 'export WORKON_HOME=$HOME/.virtualenvs' >> $USER_BASHRC
     echo 'source /usr/local/bin/virtualenvwrapper.sh' >> $USER_BASHRC
+    echo "[vagrantfiles] Updated file: $USER_BASHRC"
 fi
