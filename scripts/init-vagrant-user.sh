@@ -7,11 +7,12 @@ sudo usermod -a -G admin vagrant
 # add host bin to path
 if ! grep -q "/host/bin" $HOME/.profile; then
     echo -e '\nexport PATH=$PATH:/host/bin' >> $HOME/.profile
+    echo "[vagrantfiles] Updated file: $HOME/.profile"
 fi
 
 # generate inputrc
 if [ ! -f $HOME/.inputrc ]; then
-    cat <<EOF > $HOME/.inputrc
+    cat <<"EOF" > $HOME/.inputrc
 # search history
 "\C-p": history-search-backward
 "\C-n": history-search-forward
@@ -20,6 +21,7 @@ $if Bash
   Space: magic-space
 $endif
 EOF
+    echo "[vagrantfiles] Generated file: $HOME/.inputrc"
 fi
 
 # basic git config
@@ -40,4 +42,5 @@ if ! grep -q "^# my aliases" $HOME/.bashrc; then
     if command_exists gh; then
 	echo 'eval "$(gh alias -s)"' >> $HOME/.bashrc
     fi
+    echo "[vagrantfiles] Updated file: $HOME/.bashrc"
 fi
