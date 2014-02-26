@@ -16,11 +16,12 @@ USER_PROFILE=/home/vagrant/.profile
 if ! grep -q "emacs" $USER_PROFILE; then
     echo -e '\n# start emacs server at login' >> $USER_PROFILE
     echo 'ps | grep -q emacs || emacs --daemon' >> $USER_PROFILE
+    echo "[vagrantfiles] Generated file: $USER_PROFILE"
 fi
 
 USER_DOTEMACS=/home/vagrant/.emacs
-if [ ! -f $USER_DOTEMACS; then
-    cat <<EOF > $USER_DOTEMACS
+if [ ! -f $USER_DOTEMACS ]; then
+    cat <<"EOF" > $USER_DOTEMACS
 ;;; .emacs
 ;; A minimal emacs config.
 (tool-bar-mode -1)
@@ -34,4 +35,5 @@ if [ ! -f $USER_DOTEMACS; then
 ;;; .emacs ends here
 EOF
     chown vagrant:vagrant $USER_DOTEMACS
+    echo "[vagrantfiles] Generated file: $USER_DOTEMACS"
 fi
