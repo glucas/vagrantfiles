@@ -2,6 +2,10 @@
 
 apt-get -y install build-essential 
 
+# top flavors
+apt-get -y install htop
+apt-get -y install atop
+
 # ack
 apt-get -y install ack-grep
 if [ ! -f /usr/local/bin/ack ]; then
