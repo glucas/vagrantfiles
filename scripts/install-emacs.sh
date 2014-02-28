@@ -12,6 +12,7 @@ apt-get -y install texinfo
 
 # configure vagrant user
 
+# start emacs at login:
 USER_PROFILE=/home/vagrant/.profile
 if ! grep -q "emacs" $USER_PROFILE; then
     echo -e '\n# start emacs server at login' >> $USER_PROFILE
@@ -19,6 +20,7 @@ if ! grep -q "emacs" $USER_PROFILE; then
     echo "[vagrantfiles] Generated file: $USER_PROFILE"
 fi
 
+# minimal dotemacs:
 USER_DOTEMACS=/home/vagrant/.emacs
 if [ ! -f $USER_DOTEMACS ]; then
     cat <<"EOF" > $USER_DOTEMACS
@@ -37,3 +39,31 @@ EOF
     chown vagrant:vagrant $USER_DOTEMACS
     echo "[vagrantfiles] Generated file: $USER_DOTEMACS"
 fi
+
+# generate emacsclient command
+LAUNCH_EMACS=/home/vagrant/bin/ec
+if [! -f $LAUNCH_EMACS ]; then
+    mkdir -p $( dirname $LAUNCH_EMACS )
+    cat <<"EOF"
+#!/bin/bash
+
+visible_frames() {
+  emacsclient -a "" -e '(length (visible-frame-list))'
+}
+
+change_focus() {
+  emacsclient -n -e "(select-frame-set-input-focus (selected-frame))" > /dev/null
+}
+
+if [ "$(visible_frames)" -lt  "2" ]; then
+  emacsclient -n -c "$@" && change_focus
+else
+  change_focus
+  test  "$#" -ne "0" && emacsclient -n "$@"
+fi
+EOF
+    chmod a+x $LAUNCH_EMACS
+    chown -R vagrant:vagrant `dirname $LAUNCH_EMACS`
+    echo "[vagrantfiles] Generated file: $LAUNCH_EMACS"
+fi
+
