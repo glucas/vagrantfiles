@@ -13,7 +13,15 @@ if [ ! -f /usr/local/bin/ack ]; then
     echo "[vagrantfiles] Linked: /usr/local/bin/ack"
 fi
 
-# git and gh
+# git
+add-apt-repository -y ppa:git-core/ppa
+apt-get -y update
 apt-get -y install git
-sudo dpkg -i /host/shared/installs/gh_2.0.0_amd64.deb 
+
+# gh (github)
+if [ -z "$GH_DIST" ]; then
+    GH_DIST=`find /host/shared -name gh_*_amd64.deb`
+fi
+echo "[vagrantfiles] Installing gh from: $GH_DIST"
+sudo dpkg -i $GH_DIST
 
