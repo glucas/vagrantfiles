@@ -33,6 +33,9 @@ if command_exists git; then
     if [ -n "$GIT_EMAIL" ]; then
 	git config --global user.email $GIT_EMAIL
     fi
+
+    git config --global color.ui true
+    git config --global log.abbrevCommit true
 fi
 
 # aliases
