@@ -42,9 +42,9 @@ fi
 
 # generate emacsclient command
 LAUNCH_EMACS=/home/vagrant/bin/ec
-if [! -f $LAUNCH_EMACS ]; then
+if [ ! -f $LAUNCH_EMACS ]; then
     mkdir -p $( dirname $LAUNCH_EMACS )
-    cat <<"EOF"
+    cat <<"EOF" > $LAUNCH_EMACS
 #!/bin/bash
 
 visible_frames() {
