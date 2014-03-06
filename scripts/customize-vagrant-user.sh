@@ -5,6 +5,11 @@
 command_exists() { command -v "$1" &> /dev/null; }
 export command_exists
 
+# generate an ssh key
+if [ ! -f $HOME/.ssh/config ]; then
+    ssh-keygen -f $HOME/.ssh/id_rsa -t rsa -N ''
+fi
+
 # generate inputrc
 if [ ! -f $HOME/.inputrc ]; then
     cat <<"EOF" > $HOME/.inputrc
