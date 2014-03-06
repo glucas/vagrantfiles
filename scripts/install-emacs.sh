@@ -17,7 +17,7 @@ USER_PROFILE=/home/vagrant/.profile
 if ! grep -q "emacs" $USER_PROFILE; then
     echo -e '\n# start emacs server at login' >> $USER_PROFILE
     echo 'ps | grep -q emacs || emacs --daemon' >> $USER_PROFILE
-    echo "[vagrantfiles] Generated file: $USER_PROFILE"
+    echo "Generated file: $USER_PROFILE"
 fi
 
 # minimal dotemacs:
@@ -37,7 +37,7 @@ if [ ! -f $USER_DOTEMACS ]; then
 ;;; .emacs ends here
 EOF
     chown vagrant:vagrant $USER_DOTEMACS
-    echo "[vagrantfiles] Generated file: $USER_DOTEMACS"
+    echo "Generated file: $USER_DOTEMACS"
 fi
 
 # generate emacsclient command
@@ -64,6 +64,6 @@ fi
 EOF
     chmod a+x $LAUNCH_EMACS
     chown -R vagrant:vagrant `dirname $LAUNCH_EMACS`
-    echo "[vagrantfiles] Generated file: $LAUNCH_EMACS"
+    echo "Generated file: $LAUNCH_EMACS"
 fi
 

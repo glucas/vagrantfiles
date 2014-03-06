@@ -1,7 +1,7 @@
 #!bin/bash
 
 if [ ! -f /usr/local/bin/gitsh ]; then
-    echo "[vagrantfiles] Installing gitsh..."
+    echo "Installing gitsh..."
     if ! grep -q "ruby 2\." <(ruby -v); then
 	source /host/provision/install-ruby.sh
     fi

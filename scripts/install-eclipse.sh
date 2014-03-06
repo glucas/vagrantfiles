@@ -6,7 +6,7 @@ apt-get -y install maven
 
 M2_HOME=$( dirname $( dirname $( readlink -e $(which mvn) ) ) )
 su -c "echo \"M2_HOME DEFAULT=$M2_HOME\" >> /home/vagrant/.pam_environment" vagrant
-echo "[vagrantfiles] Updated file: /home/vagrant/.pam_environment"
+echo "Updated file: /home/vagrant/.pam_environment"
 
 # install eclipse
 
@@ -16,7 +16,7 @@ if [ ! -d /opt/eclipse ]; then
     fi
 
     if [ -f $ECLIPSE_DIST ]; then
-	echo "[vagrantfiles] Installing eclipse from: $ECLIPSE_DIST"
+	echo "Installing eclipse from: $ECLIPSE_DIST"
 	tar xfz $ECLIPSE_DIST -C /opt/
 	chown -R root: /opt/eclipse
 	ln -s /opt/eclipse/eclipse /usr/local/bin/eclipse
@@ -44,4 +44,4 @@ nohup eclipse &> $OUTFILE &
 EOF
 chmod a+x $LAUNCH_ECLIPSE
 chown -R vagrant:vagrant `dirname $LAUNCH_ECLIPSE`
-echo "[vagrantfiles] Generated file: $LAUNCH_ECLIPSE"
+echo "Generated file: $LAUNCH_ECLIPSE"

@@ -36,7 +36,7 @@ password = ${MYSQL_PASSWORD}
 [mysql]
 prompt="\\u@\\h:\\p \\d> "
 EOF
-    echo "[vagrantfiles] Generated file: $MYSQL_CLIENT_CNF"
+    echo "Generated file: $MYSQL_CLIENT_CNF"
 fi
 
 chown vagrant:vagrant $MYSQL_CLIENT_CNF
