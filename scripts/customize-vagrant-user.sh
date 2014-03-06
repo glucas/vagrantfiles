@@ -1,14 +1,9 @@
 #!/bin/bash
 
+## minimal user config for shell, git, etc
+
 command_exists() { command -v "$1" &> /dev/null; }
-
-sudo usermod -a -G admin vagrant
-
-# add host bin to path
-if ! grep -q "/host/bin" $HOME/.profile; then
-    echo -e '\nexport PATH=$PATH:/host/bin' >> $HOME/.profile
-    echo "[vagrantfiles] Updated file: $HOME/.profile"
-fi
+export command_exists
 
 # generate inputrc
 if [ ! -f $HOME/.inputrc ]; then
@@ -21,13 +16,13 @@ $if Bash
   Space: magic-space
 $endif
 EOF
-    echo "[vagrantfiles] Generated file: $HOME/.inputrc"
+    echo "Generated file: $HOME/.inputrc"
 fi
 
 # basic git config
 if command_exists git; then
-    if [ -n "$GIT_USERNAME" ]; then
-	git config --global user.name $GIT_USERNAME
+    if [ -n "$GIT_NAME" ]; then
+	git config --global user.name $GIT_NAME
     fi
 
     if [ -n "$GIT_EMAIL" ]; then
@@ -45,5 +40,5 @@ if ! grep -q "^# my aliases" $HOME/.bashrc; then
     if command_exists gh; then
 	echo 'eval "$(gh alias -s)"' >> $HOME/.bashrc
     fi
-    echo "[vagrantfiles] Updated file: $HOME/.bashrc"
+    echo "Updated file: $HOME/.bashrc"
 fi
