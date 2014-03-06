@@ -8,7 +8,7 @@ export command_exists
 apt-get update
 apt-get dist-upgrade
 apt-get -y install build-essential linux-headers-$(uname -r)
-apt-get install python-software-properties
+apt-get -y install software-properties-common python-software-properties
 
 ## install some handy tools
 
@@ -35,3 +35,4 @@ if [ -z "$GH_DIST" ]; then
 fi
 echo "Installing gh from: $GH_DIST"
 sudo dpkg -i $GH_DIST
+echo 'eval "$(gh alias -s)"' >> /home/vagrant/.bashrc
