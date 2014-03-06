@@ -42,8 +42,5 @@ fi
 if ! grep -q "^# my aliases" $HOME/.bashrc; then
     echo -e '\n# my aliases' >> $HOME/.bashrc
     echo "alias ..='cd ..'" >> $HOME/.bashrc
-    if command_exists gh; then
-	echo 'eval "$(gh alias -s)"' >> $HOME/.bashrc
-    fi
     echo "Updated file: $HOME/.bashrc"
 fi
